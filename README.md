@@ -27,18 +27,6 @@ Async await.
 Units tests for success and failure situations.Mocked responses using MockNetworking
 
 # Screenshots
-/Users/geethu/Desktop/Simulator Screenshot - iPhone 15 Pro - 2024-05-03 at 15.03.57.png
-
-/Users/geethu/Desktop/Simulator Screenshot - iPhone 15 Pro - 2024-05-03 at 15.04.09.png
-/Users/geethu/Desktop/Simulator Screenshot - iPhone 15 Pro - 2024-05-03 at 15.12.44.png
-
-/Users/geethu/Desktop/Simulator Screenshot - iPhone 15 Pro - 2024-05-03 at 15.12.49.png
-
-/Users/geethu/Desktop/Simulator Screenshot - iPhone 15 Pro - 2024-05-03 at 15.12.52.png
-
-/Users/geethu/Desktop/Simulator Screenshot - iPhone 15 Pro - 2024-05-03 at 15.13.00.png
-
-/Users/geethu/Desktop/Simulator Screenshot - iPhone 15 Pro - 2024-05-03 at 15.13.04.png
 
 |List of Pokemon Screen|DetailScreen|
 

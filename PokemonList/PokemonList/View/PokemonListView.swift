@@ -39,6 +39,8 @@ struct PokemonListView: View {
     func loadPokemonList() -> some View {
         VStack {
             Text("Please select or search for a Pokemon to get the detailed Statistics")
+                .font(.title2)
+                .fontWeight(.semibold)
                 .accessibilityAddTraits(.isHeader)
             List(viewModel.filteredPokemons) { pokemon in
                 NavigationLink (destination: PokemonDetailView( pokemonDetailPath: pokemon.url)) {

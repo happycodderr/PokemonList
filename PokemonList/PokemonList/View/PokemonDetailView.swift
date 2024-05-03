@@ -26,8 +26,8 @@ struct PokemonDetailView: View {
                             ForEach(0..<viewModel.imageArray.count, id: \.self) { index in
                                 AsyncImage(url: URL(string: viewModel.imageArray[index])) { image in
                                     image.resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 200, height: 200)
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 250, height: 250)
                                         .accessibilityHidden(true)
                                 } placeholder: {
                                     ProgressView()

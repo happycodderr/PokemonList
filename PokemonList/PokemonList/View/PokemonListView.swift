@@ -41,17 +41,19 @@ struct PokemonListView: View {
             Text("Please select or search for a Pokemon to get the detailed Statistics")
                 .accessibilityAddTraits(.isHeader)
             List(viewModel.filteredPokemons) { pokemon in
-                HStack {
-                    AsyncImage(url: URL(string: viewModel.getImagePath(urlString: pokemon.url))) { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    .frame(width: 50, height: 50)
-                    Text(pokemon.name)
-                } // Get the image of the pokemon and the name of the pokemon
-                .padding(.horizontal, 10)
+                NavigationLink (destination: PokemonDetailView( pokemonDetailPath: pokemon.url)) {
+                    HStack {
+                        AsyncImage(url: URL(string: viewModel.getImagePath(urlString: pokemon.url))) { image in
+                            image.resizable()
+                                .aspectRatio(contentMode: .fit)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 50, height: 50)
+                        Text(pokemon.name)
+                    } // Get the image of the pokemon and the name of the pokemon
+                    .padding(.horizontal, 10)
+                }
             }
             .searchable(text: $searchText)
             .onChange(of: searchText) {

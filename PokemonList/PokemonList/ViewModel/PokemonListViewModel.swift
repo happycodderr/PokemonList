@@ -28,7 +28,8 @@ final class PokemonListViewModel: ObservableObject {
     func fetchPokemonList(urlString: String) async {
         do {
             viewState = .loading
-            let pokemonData = try await manager.fetchFromAPI(urlString: urlString, type: PokemonModel.self)
+            let pokemonData = try await manager.fetchFromAPI(urlString: urlString, 
+                                                             type: PokemonModel.self)
             pokemons = pokemonData.results
             filteredPokemons = pokemons
             viewState = .loaded

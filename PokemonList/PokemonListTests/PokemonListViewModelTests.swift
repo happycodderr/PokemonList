@@ -8,7 +8,7 @@
 import XCTest
 @testable import PokemonList
 
-final class PokemonListTests: XCTestCase {
+final class PokemonListViewModelTests: XCTestCase {
     var sut: PokemonListViewModel!
 
     override func setUpWithError() throws {
@@ -28,6 +28,7 @@ final class PokemonListTests: XCTestCase {
         // Then
         XCTAssertEqual(sut.filteredPokemons.count, 100)
         XCTAssertEqual(sut.filteredPokemons[0].name, "bulbasaur")
+        XCTAssertEqual(sut.filteredPokemons[0].url, "https://pokeapi.co/api/v2/pokemon/1/")
     }
     
     func test_fetchPokemonList_Failure() async {

@@ -47,6 +47,10 @@ struct PokemonDetailView: View {
                                 .font(.title3)
                                 .fontWeight(.bold)
                             Text(stat.stat.url)
+                            HStack {
+                                Text("BaseStat: \(stat.baseStat)")
+                                Text("Effort: \(stat.effort)")
+                            }
                         }
                         Spacer().frame(height: 20)
                     }

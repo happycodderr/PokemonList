@@ -9,28 +9,50 @@ import XCTest
 @testable import PokemonList
 
 final class PokemonListTests: XCTestCase {
+    var sut: PokemonListViewModel!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+       sut = PokemonListViewModel(manager: MockNetworkManager())
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func test_fetchPokemonList_Success() async {
+        // Given
+        
+        // When
+        await sut.fetchPokemonList(urlString: "PokemonList")
+        
+        // Then
+        XCTAssertEqual(sut.filteredPokemons.count, 100)
+        XCTAssertEqual(sut.filteredPokemons[0].name, "bulbasaur")
     }
+    
+    func test_fetchPokemonList_Failure() async {
+        // Given
+        
+        // When
+        await sut.fetchPokemonList(urlString: "abcd")
+        
+        // Then
+        XCTAssertEqual(sut.filteredPokemons.count, 0)
+        XCTAssertNotNil(sut.networkErrors)
+    }
+}
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+final class MockNetworkManager: Networkable {
+    func fetchFromAPI<T>(urlString: String, type: T.Type) async throws -> T where T : Codable {
+        let bundle = Bundle(for: MockNetworkManager.self)
+        let fileURL = bundle.url(forResource: urlString, withExtension: "json")
+        guard let fileURL = fileURL else { throw NetworkErrors.invalidURL }
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let decodedData = try JSONDecoder().decode(type.self, from: data)
+            return decodedData
+        } catch {
+            throw error
         }
     }
-
 }
